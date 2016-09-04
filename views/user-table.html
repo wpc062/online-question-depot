@@ -1,0 +1,26 @@
+%rebase layout title='Question Depot', parent_url=app.get_url('index')
+
+<h1>User table</h1>
+
+<div class="col-md-6">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Full Name</th>
+        <th>Email Address</th>
+      </tr>
+    </thead>
+    <tbody>
+    %for user in users:
+      <tr>
+        <td><a href="{{app.get_url('user', username=user.name)}}">{{user.id}}</a></td>
+        <td>{{user.name}}</td>
+        <td>{{user.full_name}}</td>
+        <td>{{user.email_address}}</td>
+      </tr>
+    %end
+    </tbody>
+  </table>
+</div>

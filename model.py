@@ -23,10 +23,11 @@
 
 from sqlalchemy.ext.declarative import declarative_base
 Base = declarative_base()
-from sqlalchemy import event, Column, Integer, String, ForeignKey
+from sqlalchemy import event, Column, Integer, String, ForeignKey, DateTime
 from sqlalchemy.exc import DisconnectionError
 from sqlalchemy.orm import relationship, backref
 from sqlalchemy.pool import Pool
+from sqlalchemy.sql import func
 
 
 def initdb():
@@ -54,6 +55,48 @@ def ping_connection(dbapi_connection, connection_record, connection_proxy):
 
 
 #  XXX Your model goes here
+class ChoiceQuestion(Base):
+    __tablename__ = 'choice_question'
+    id = Column(Integer(), primary_key=True)
+    descr = Column(String(length=512), nullable=False)
+    note = Column(String(length=512), nullable=True)
+
+    #multi choices?
+    type = Column(Integer(), nullable=False)
+    choice_list = Column(String(length=512), nullable=False)
+    #timestamp = Column(DateTime(), default=func.now)
+
+class TrueFalseQuestion(Base):
+    __tablename__ = 'truefalse_question'
+    id = Column(Integer(), primary_key=True)
+    descr = Column(String(length=512), nullable=False)
+    note = Column(String(length=512), nullable=True)
+
+class EssayQuestion(Base):
+    __tablename__ = 'essay_question'
+    id = Column(Integer(), primary_key=True)
+    descr = Column(String(length=512), nullable=False)
+    note = Column(String(length=512), nullable=True)
+
+class SnapshotQuestion(Base):
+    __tablename__ = 'snapshot_question'
+    id = Column(Integer(), primary_key=True)
+    descr = Column(String(length=512), nullable=False)
+    note = Column(String(length=512), nullable=True)
+    
+    type = Column(Integer(), nullable=False)
+    #snapshot file
+    #content = Column(String(length=512), nullable=False)
+    
+
+def question_by_id(qid):
+    from bottledbwrap import dbwrap
+    db = dbwrap.session()
+    q = db.query(ChoiceQuestion).filter_by(id=qid).first()
+    return q
+
+
+#################################################
 class User(Base):
     __tablename__ = 'users'
     id = Column(Integer(), primary_key=True)
@@ -90,6 +133,11 @@ def create_sample_data():
     dmr = User(
             full_name='Dennis Ritchie', name='dmr',
             email_address='dmr@example.com')
+    db.add(dmr)
+
+    dmr = User(
+            full_name='Peichao Wang', name='pwang',
+            email_address='pwang@example.com')
     db.add(dmr)
 
     db.commit()

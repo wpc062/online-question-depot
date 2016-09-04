@@ -1,6 +1,6 @@
-%rebase layout title='New Rotation', parent_url=app.get_url('index')
+%rebase layout title='Question Depot', parent_url=app.get_url('index')
 
-<h1>Create New User</h1>
+<h1>Form</h1>
 
 %def render_field(field, desc=None, **kwargs):
    <dt>{{!field.label}}</dt>
@@ -21,16 +21,11 @@
 <form method="POST">
    <dl>
       %render_field(form.name, '(4-20 characters)</p>')
-      %render_field(form.sex)
       %render_field(form.full_name, size=60)
       %render_field(form.email_address, size=40)
       %render_field(form.password)
       %render_field(form.confirm)
-
-      %render_field(form.birthday)
-      %render_field(form.now)
-      %render_field(form.sample_file)
-      %render_field(form.eula)
    </dl>
    <p><input type=submit value="Create">
 </form>
+

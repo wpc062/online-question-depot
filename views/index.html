@@ -1,8 +1,10 @@
-%rebase layout title='New Rotation'
+%rebase layout title='Question Depot'
 
-<h1>Welcome to python-bottle-skeleton!</h1>
+<h1>常用功能：</h1>
 
-The current time is {{now.strftime('%H:%M:%S')}}
+<ol> 
+    <li><a href="{{app.get_url('question_list')}}"> 题目列表</a></li>
+    <li><a href="{{app.get_url('new_choice')}}"> 创建选择题</a></li> 
+</ol> 
 
-<div><a href="{{app.get_url('user_list')}}">User List</a></div>
-<div><a href="{{app.get_url('user_new')}}">Create User</a></div>
+<h5>欢迎使用在线试题库系统~ 系统时间：{{now.strftime('%H:%M:%S')}}</h5>
