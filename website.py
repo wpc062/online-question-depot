@@ -117,6 +117,7 @@ def build_application():
         'A simple page from a dabase.'
 
         q = model.question_by_id(qid)
+        choices = q.choice_list.split("@")
 
         #  any local variables can be used in the template
         return locals()
@@ -130,12 +131,17 @@ def build_application():
         if request.method == 'POST':
             db = dbwrap.session()
 
+            multi = 0
+            if len(request.POST.type.strip()) > 0:
+                multi = 1
+
             choice_list = request.POST.itema.strip() \
                 + '@' + request.POST.itemb.strip() \
                 + '@' + request.POST.itemc.strip() \
                 + '@' + request.POST.itemd.strip()
             q = model.ChoiceQuestion(
-                    type=request.POST.type.strip(), choice_list=choice_list,
+                    descr=request.POST.descr.strip(),
+                    multi=multi, choice_list=choice_list,
                     note=request.POST.note.strip())
             db.add(q)
             db.commit()

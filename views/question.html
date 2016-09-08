@@ -1,7 +1,15 @@
 %rebase layout title='New Rotation', parent_url=app.get_url('question_list')
 
-<h1>Question Information</h1>
+<h1>题目信息</h1>
+%if q.multi:
+<div>多选题</div>
+%else:
+<div>单选题</div>
+%end
+<h5>{{q.descr}}</h5>
+<div>A. {{choices[0]}}</div>
+<div>B. {{choices[1]}}</div>
+<div>C. {{choices[2]}}</div>
+<div>D. {{choices[3]}}</div>
 
-<div>Type: {{q.type}}</div>
-<div>Choices: {{q.choice_list}}</div>
 <div>NOTE: {{q.note}}</div>

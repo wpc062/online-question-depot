@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+#-*-coding:utf-8 -*-
 #
 #  SQLAlchemy database model.  This defines your database using SQLAlchemy
 #  "declarative" format.  See:
@@ -62,7 +63,7 @@ class ChoiceQuestion(Base):
     note = Column(String(length=512), nullable=True)
 
     #multi choices?
-    type = Column(Integer(), nullable=False)
+    multi = Column(Integer(), nullable=False)
     choice_list = Column(String(length=512), nullable=False)
     #timestamp = Column(DateTime(), default=func.now)
 
@@ -139,5 +140,22 @@ def create_sample_data():
             full_name='Peichao Wang', name='pwang',
             email_address='pwang@example.com')
     db.add(dmr)
+
+    db.commit()
+
+
+    q = TrueFalseQuestion(descr=u'幻想与一般的创造想象区别在于，幻想中所创造的形象总是体现着个人的愿望，并指向未来。',
+        note=u'对')
+
+    db.add(q)
+
+    q = ChoiceQuestion(multi=1, descr=u'教育目的就其表述和内容而言具有（ ）特征。',
+        choice_list=u'抽象性@理想性@可操作性@终极性', note=u'ABD')
+    db.add(q)
+
+    q = ChoiceQuestion(multi=1, descr=u'下列关于复式教学叙述正确的是( )。',
+        choice_list=u'复式教学就是对两个以上年级的学生进行教学的一种教学组织形式@复式教学适用于学生多、教室少的情况下教学@复式教学课堂教师的教学和学生的自学或做作业同时进行@复式教学情景下的学生的基本技能和自学能力相对较弱',
+        note=u'ABC')
+    db.add(q)
 
     db.commit()

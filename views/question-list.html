@@ -1,22 +1,22 @@
 %rebase layout title='Question Depot', parent_url=app.get_url('index')
 
-<h1>User table</h1>
+<h1>题目列表</h1>
 
 <div class="col-md-6">
   <table class="table">
     <thead>
       <tr>
         <th>ID</th>
-        <th>Type</th>
-        <th>Choice list</th>
-        <th>Note</th>
+        <th>多选题？</th>
+        <th>选项列表</th>
+        <th>NOTE</th>
       </tr>
     </thead>
     <tbody>
     %for q in questions:
       <tr>
         <td><a href="{{app.get_url('question', qid=q.id)}}">{{q.id}}</a></td>
-        <td>{{q.type}}</td>
+        <td>{{q.multi}}</td>
         <td>{{q.choice_list}}</td>
         <td>{{q.note}}</td>
       </tr>

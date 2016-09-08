@@ -1,5 +1,8 @@
-Python Bottle Skeleton
+Online question depot
 ======================
+
+This project is cloned from a template repo **Python Bottle Skeleton** (Many thanks for it). Below is README from it.
+------------------------------------
 
 This is a skeleton web application using the bottle framework.
 
@@ -56,7 +59,7 @@ To use this as a tutorial:
   * Look at the tests in `tests/test_model.py` for examples of testing the
     database model.
 
-  * Review `app-controller` if you want to understand how the site
+  * Review `app-controller.py` if you want to understand how the site
     integrates with WSGI servers, CGI servers, or the standalone test
     server.
 
@@ -88,7 +91,7 @@ initially created this git repository:
 
   * Run `make` to test the code.
 
-  * Run: `DBCREDENTIALSTR=sqlite:///:memory: PYTHONPATH=lib python app-controller test-server`
+  * Run: `DBCREDENTIALSTR=sqlite:///:memory: python app-controller.py test-server`
 
   * Go to http://127.0.0.1:8080/ to test your application.
 
@@ -113,10 +116,10 @@ Structure of Project
 
 There are the following components to the project:
 
-  * `simple-example`: This is the simplest example, a small stand-alone
+  * `simple-example.py`: This is the simplest example, a small stand-alone
     program.
 
-  * `app-controller`: This is a both a WSGI app and a shell script.  It can
+  * `app-controller.py`: This is a both a WSGI app and a shell script.  It can
     be used as your WSGI application, but it also can be run with:
 
       * "test-server" to start a stand-alone server.

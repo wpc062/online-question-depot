@@ -19,6 +19,7 @@
 
 import sys
 import os
+sys.path.append('lib')
 import website
 
 
@@ -30,7 +31,6 @@ if __name__.startswith('_mod_wsgi_'):
     application = website.build_application()
 
 if __name__ == '__main__':
-    sys.path.append('lib')
 
     import model
     import bottle
